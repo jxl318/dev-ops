@@ -3,11 +3,16 @@ name: Deployment
 on:
   workflow_dispatch:
 
+env: 
+  HOST: cassini.cs.kent.edu
+  USER: jxl318
+  TARGET: jxl318@cassini.cs.kent.edu
+  RUN: ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no test123@cassini.cs.kent.edu
+
 jobs:
   deployment:
     name: Deploy Software
     runs-on: ubuntu-latest
-
 
     steps:
       - name: Checkout code
@@ -16,12 +21,15 @@ jobs:
       - name: Install SSH key
         uses: shimataro/ssh-key-action@v2
         with:
-          key: ${{secrets.ID_ED25519}}
+          key: ${{ secrets.ID_ED25519 }}
           name: id_ed25519
-          known_hosts: ${{secrets.KNOWN_HOSTS}}
+          known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-      - name: Examine Server
-        run: |
-          echo $ ssh jxl318@cassini.cs.kent.edu ls -la
-          ssh jxl318@cassini.cs.kent.edu ls -la
-          
+      - name: Examine Server Environment
+        run: | 
+          echo $ $RUN hostname
+          $RUN hostname 
+          echo $ $RUN pwd
+          $RUN pwd
+          echo $ $RUN ls -la 
+          $RUN ls -la 
