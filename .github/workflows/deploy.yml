@@ -35,6 +35,6 @@ jobs:
           echo $ $RUN ls -la 
           $RUN ls -la
 
-      -name: Deplot the hello page
+      - name: Deplot the hello page
         run: |
           $COPY index.html $TARGET:.
