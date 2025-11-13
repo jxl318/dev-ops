@@ -8,7 +8,7 @@ env:
   USER: jxl318
   TARGET: jxl318@cassini.cs.kent.edu
   RUN: ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no jxl318@cassini.cs.kent.edu
-  COPY: ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+  COPY: scp -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 
 jobs:
   deployment:
