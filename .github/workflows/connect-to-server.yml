@@ -1,4 +1,4 @@
-name: Deployment
+name: Test Connection to Server
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ env:
 
 jobs:
   deployment:
-    name: Deploy Software
+    name: Connect to server
     runs-on: ubuntu-latest
 
     steps:
@@ -25,11 +25,7 @@ jobs:
           name: id_ed25519
           known_hosts: ${{ secrets.KNOWN_HOSTS }}
 
-      - name: Examine Server Environment
+      - name: Examine Server
         run: | 
-          echo $ $RUN hostname
-          $RUN hostname 
-          echo $ $RUN pwd
-          $RUN pwd
-          echo $ $RUN ls -la 
-          $RUN ls -la 
+          echo $ ssh $TARGET ls -la 
+          ssh $TARGET ls -la 

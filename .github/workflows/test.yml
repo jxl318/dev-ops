@@ -8,9 +8,6 @@ jobs:
   test:
     name: Run Tests
     runs-on: ubuntu-latest
-    defaults: 
-      run: 
-        working-directory: ./topic-00-testing/javascript
 
     steps:
       - name: Checkout code
@@ -33,11 +30,11 @@ jobs:
           echo $ cd topic-00-testing/javascript 
           cd topic-00-testing/javascript 
           echo $ npm install
-          npm test
+          npm run test
 
       - name: Run cucumber tests
         run: |
           echo $ cd topic-00-testing/javascript 
           cd topic-00-testing/javascript 
           echo $ npm install
-          npm test:cucumber
+          npm run test:cucumber
