@@ -6,6 +6,9 @@ on:
 env: 
   HOST: cassini.cs.kent.edu
   USER: test123
+  PORT: 9357
+  APP: myapp
+
   TARGET: test123@cassini.cs.kent.edu
   RUN: ssh -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no test123@cassini.cs.kent.edu
   COPY: scp -o LogLevel=ERROR -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
@@ -37,4 +40,6 @@ jobs:
 
       - name: Deploy the hello page
         run: |
+          $RUN screen -S $USER:$APP -X quit || true
           $COPY index.html $TARGET:. 
+          $RUN screen -dmS $USER:$APP python -m http.server $PORT
